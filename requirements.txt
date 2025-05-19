@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+torch
+torchvision
+pillow
+transformers
+scikit-learn
+python-multipart
+gdown
