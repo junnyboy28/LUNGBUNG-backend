@@ -39,7 +39,7 @@ app = FastAPI()
 # Add this after creating your FastAPI app instance
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "https://your-deployed-frontend.com"],  # Add your deployed URL
+    allow_origins=["http://localhost:8080", "https://lungbung-frontend.vercel.app/"],  # Add your deployed URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -67,3 +67,7 @@ async def predict(file: UploadFile = File(...)):
     suggestions = generate_suggestions(suggestions_model, suggestions_vectorizer, summary)
 
     return {"report": report, "summary": summary, "suggestions": suggestions}
+
+@app.get("/healthz")
+def health_check():
+    return {"status": "ok"}
