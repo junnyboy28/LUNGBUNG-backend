@@ -26,4 +26,5 @@ COPY . .
 RUN python download_models.py
 
 # Run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "$PORT"]
+# Use shell form to allow environment variable substitution
+CMD uvicorn app.main:app --host 0.0.0.0 --port $PORT
