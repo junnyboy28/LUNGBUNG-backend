@@ -1,4 +1,4 @@
-FROM python:3.9-slim-bookworm@sha256:2b6e7e3e2e8e2e5b9e1e1e3e2e8e2e5b9e1e1e3e2e8e2e5b9e1e1e3e2e8e2e5b9
+FROM python:3.9-slim-bookworm
 
 # Update system packages to latest versions to reduce vulnerabilities
 RUN apt-get update && apt-get dist-upgrade -y && apt-get clean
@@ -26,4 +26,4 @@ COPY . .
 RUN python download_models.py
 
 # Run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "$PORT"]
