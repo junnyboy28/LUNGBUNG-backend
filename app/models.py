@@ -5,7 +5,8 @@ from torchvision import models
 class CNNEncoder(nn.Module):
     def __init__(self, embed_size):
         super(CNNEncoder, self).__init__()
-        resnet = models.resnet50(pretrained=True)
+        # Update to use weights parameter instead of pretrained
+        resnet = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
         modules = list(resnet.children())[:-1]
         self.resnet = nn.Sequential(*modules)
         self.embed = nn.Linear(resnet.fc.in_features, embed_size)

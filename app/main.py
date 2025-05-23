@@ -39,7 +39,7 @@ app = FastAPI()
 # Add this after creating your FastAPI app instance
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "https://lungbung-frontend.vercel.app/"],  # Add your deployed URL
+    allow_origins=["http://localhost:8080", "https://lungbung-frontend.vercel.app"],  # Remove trailing slash
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -51,7 +51,8 @@ def clean_report(report_text):
     # Additional cleaning as needed
     return cleaned_text
 
-@app.post("/predict/")
+# Change endpoint from "/predict/" to "/predict" (no trailing slash)
+@app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     # 1. Open and transform the image
     image = Image.open(file.file).convert("RGB")
